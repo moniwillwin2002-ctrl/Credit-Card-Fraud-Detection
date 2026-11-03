@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}My Card{% endblock %}
+{% block body %}<section class="page-banner"><div class="container"><h1>My Approved Card</h1></div></section><div class="container py-5"><div class="form-card mx-auto">
+{% if card %}<p><strong>Card Holder:</strong> {{ card.card_holder }}</p><p><strong>Card Number:</strong> {{ card.card_number }}</p>{% else %}<p>No issued card found.</p>{% endif %}
+</div></div>{% endblock %}

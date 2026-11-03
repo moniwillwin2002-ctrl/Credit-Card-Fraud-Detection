@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}All Applications{% endblock %}
+{% block body %}<section class="page-banner"><div class="container"><h1>All Applications</h1><p>Credit-card application records.</p></div></section><div class="container py-5"><div class="form-card mx-auto">
+{% for item in applications %}<div class="list-row"><div><strong>{{ item.full_name }}</strong><br><small>{{ item.email }} · Age {{ item.age }}</small></div><span>{{ item.status }}</span></div>{% empty %}<p>No applications found.</p>{% endfor %}
+</div></div>{% endblock %}

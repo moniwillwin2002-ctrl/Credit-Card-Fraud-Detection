@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<section class="page-banner"><div class="container"><h1>Login</h1><p>Access your CreditGuard account.</p></div></section>
+<div class="container py-5"><div class="form-card mx-auto"><form method="post">{% csrf_token %}
+<label class="form-label">Username</label><input class="form-control mb-3" name="username" required>
+<label class="form-label">Password</label><input class="form-control mb-4" type="password" name="password" required>
+<button class="btn btn-info w-100">Login</button></form></div></div>
+{% endblock %}

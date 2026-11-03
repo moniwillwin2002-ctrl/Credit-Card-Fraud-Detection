@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Card Management{% endblock %}
+{% block body %}
+<section class="page-banner"><div class="container"><h1>Card Management</h1><p>Manage card security settings.</p></div></section>
+<div class="container py-5"><div class="form-card mx-auto">
+{% if card %}
+<p><strong>Card:</strong> {{ card.card_number|default:"Card on record" }}</p><p><strong>Status:</strong> {% if card.is_locked %}Locked{% else %}Active{% endif %}</p>
+<form method="post" class="mb-4">{% csrf_token %}<label class="form-label">Change 4-digit PIN</label><input class="form-control mb-3" name="new_pin" maxlength="4" pattern="[0-9]{4}" required><button class="btn btn-info" name="change_pin" value="1">Change PIN</button></form>
+<form method="post" class="mb-4">{% csrf_token %}<button class="btn btn-outline-primary" name="toggle_lock" value="1">{% if card.is_locked %}Unlock Card{% else %}Lock Card{% endif %}</button></form>
+<form method="post">{% csrf_token %}<div class="form-check"><input class="form-check-input" type="checkbox" name="domestic" id="domestic" {% if card.domestic_limit_enabled %}checked{% endif %}><label for="domestic">Domestic transactions enabled</label></div><div class="form-check mb-3"><input class="form-check-input" type="checkbox" name="international" id="international" {% if card.international_limit_enabled %}checked{% endif %}><label for="international">International transactions enabled</label></div><button class="btn btn-info" name="set_limits" value="1">Save Limits</button></form>
+{% else %}<p>No card record found. Add a card through Django admin to use card management.</p>{% endif %}
+</div></div>
+{% endblock %}

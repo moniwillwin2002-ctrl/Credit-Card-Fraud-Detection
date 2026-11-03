@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Fraud Prediction{% endblock %}
+{% block body %}
+<section class="page-banner"><div class="container"><span class="eyebrow">MACHINE LEARNING</span><h1>Credit Card Fraud Detection</h1><p>Enter the transaction information below.</p></div></section>
+<div class="container py-5"><div class="form-card mx-auto">
+  <form method="post">{% csrf_token %}
+    <div class="mb-3"><label class="form-label">Transaction Time (Seconds)</label><input class="form-control" type="number" step="any" name="transaction_time" required></div>
+    <div class="mb-3"><label class="form-label">Transaction Amount ($)</label><input class="form-control" type="number" step="any" name="transaction_amount" required></div>
+    <div class="mb-3"><label class="form-label">Cardholder Age</label><input class="form-control" type="number" step="any" name="cardholder_age" required></div>
+    <div class="mb-4"><label class="form-label">Location Distance (km)</label><input class="form-control" type="number" step="any" name="location_distance" required></div>
+    <button class="btn btn-info w-100 btn-lg" type="submit">Predict Transaction</button>
+  </form>
+  {% if prediction_result %}<div class="alert alert-success mt-4 mb-0"><strong>Prediction Result:</strong> {{ prediction_result }}</div>{% endif %}
+  {% if error %}<div class="alert alert-warning mt-4 mb-0">{{ error }}</div>{% endif %}
+</div></div>
+{% endblock %}

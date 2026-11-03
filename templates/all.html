@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}All Cards{% endblock %}
+{% block body %}<section class="page-banner"><div class="container"><h1>All Cards</h1><p>Available card records.</p></div></section><div class="container py-5"><div class="form-card mx-auto">
+{% for card in cards %}<div class="list-row"><strong>{{ card.card_holder|default:"Card holder" }}</strong><span>{{ card.card_number|default:"Card number not added" }}</span></div>{% empty %}<p>No cards available.</p>{% endfor %}
+</div></div>{% endblock %}
